@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Min-heap program in javascript</h2>
+</body>
+<script>
+    function left(k) {
+        return 2 * k + 1;
+    }
+
+    function right(k) {
+        return 2 * k + 2;
+    }
+
+    function min_heapify(A, k) {
+        let smallest = k;
+        let l = left(k);
+        let r = right(k);
+
+        if(l < A.length && A[l] < A[smallest]){
+            smallest = l;
+        }
+        if(r < A.length && A[r] < A[smallest]){
+            smallest = r;
+        }
+
+        if(smallest != k){
+            let tem = A[k];
+            arr[k] = A[smallest];
+            A[smallest] = tem;
+            min_heapify(A, k);
+        }
+    }
+
+    function insert(A, k) {
+        let size = A.length;
+        if(size == 0){
+            A.push(k);
+        }
+        else {
+            A.push(k);
+            for(let i=size-1;i>=0;i--){
+                min_heapify(A, i);
+            }
+        }
+    }
+
+    function display(A) {
+        console.log("Min-heap array: ");
+        for(let i=0;i<A.length;++i){
+            console.log(A[i]);
+        }        
+    }
+
+
+    
+arr = [];
+insert(arr, 23);
+insert(arr, 18);
+insert(arr, 19);
+insert(arr, 24);
+insert(arr, 45);
+insert(arr, 1);
+display(arr);
+</script>
+
+</html>
