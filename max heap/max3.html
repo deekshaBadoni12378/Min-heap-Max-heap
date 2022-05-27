@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>Max heap program in javascript</h2>
+</body>
+<script>
+    function left(k) {
+        return 2 * k + 1;
+    }
+
+    function right(k) {
+        return 2 * k + 2;
+    }
+
+    function max_heapify(A, k) {
+        let largest = k;
+        let l = left(k);
+        let r = right(k);
+
+        if(l < A.length && A[l] > A[largest]){
+            largest = l;
+        }
+        if(r < A.length && A[r] > A[largest]){
+            largest = r;
+        }
+
+        if(largest != k){
+            let tem = A[k];
+            arr[k] = A[largest];
+            A[largest] = tem;
+            max_heapify(A, k);
+        }
+    }
+
+    function insert(A, k) {
+        let size = A.length;
+        if(size == 0){
+            A.push(k);
+        }
+        else {
+            A.push(k);
+            for(let i=size-1;i>=0;i--){
+                max_heapify(A, i);
+            }
+        }
+    }
+
+    function delete1(arr,value){
+        console.log("After deleting an element: "+value)
+        let size = arr.length;
+        let i=0;
+        for(i=0;i<size;i++){
+            if(arr[i] == value){
+                break;
+            }
+        }
+        let temp = arr[i];
+        arr[i] = arr[size-1];
+        arr[size-1] = temp;
+        arr.pop(value);
+        for(let i=size;i>=0;i--){
+            max_heapify(arr, i);
+        }
+    }
+
+    function display(A) {
+        console.log("Max-heap array: ");
+        for(let i=0;i<A.length;++i){
+            console.log(A[i]);
+        }        
+    }
+
+
+    
+arr = [];
+insert(arr, 23);
+insert(arr, 18);
+insert(arr, 19);
+insert(arr, 24);
+insert(arr, 45);
+insert(arr, 1);
+insert(arr, 100);
+display(arr);
+delete1(arr,1);
+display(arr);
+
+
+</script>
+
+</html>
